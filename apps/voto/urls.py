@@ -14,6 +14,6 @@ urlpatterns = [
 	url(r'^panel_admin/encuestaadmin/encuesta_lista/encuesta_detalle/(?P<id>\d+)/$', encuesta_detalle, name='encuesta_detalle'),
 	url(r'^panel_admin/encuestaadmin/encuesta_lista/borrar_encuesta/(?P<id>\d+)/$', borrar_encuesta, name='borrar_encuesta'),
 	url(r'^panel_admin/encuestaadmin/encuesta_lista/actualizar_encuesta/(?P<id>\d+)/$', actualizar_encuesta, name='actualizar_encuesta'),
-	url(r'^encuesta/$', Encuesta.as_view(), name='encuesta'),
+	url(r'^encuesta/$', EncuestaView.as_view(), name='encuestaview'),
 	url(r'^buscar$', buscar2, name= 'buscar'),
 ]

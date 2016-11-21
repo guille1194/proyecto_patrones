@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def index_view(request):
-	queryset_list = Encuesta.objects.all().order_by('-fecha_creacion')
+	queryset_list = Encuesta.objects.all().order_by('fecha_creacion')
 	paginator = Paginator(queryset_list, 3)
 
 	page = request.GET.get('page')
@@ -20,7 +20,7 @@ def index_view(request):
 		queryset = paginator.page(1)
 	except EmptyPage:
 		queryset = paginator.page(paginator.num_pages)
-		context = {
+	context = {
 			"object_list": queryset
 		}
 	return render(request,'voto/index.html', context)
@@ -100,7 +100,7 @@ class Crear_Encuesta(FormView):
 		ctx['Usuario'] = Usuario.objects.all()
 		return ctx
 
-class Encuesta(ListView):
+class EncuestaView(ListView):
 	template_name = 'voto/Encuesta.html'
 	model = Encuesta
 	fields = '__all__'
