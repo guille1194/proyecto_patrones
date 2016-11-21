@@ -3,7 +3,7 @@ from .models import Usuario, Encuesta, Eleccion, Voto
 # Register your models here.
 
 class UsuarioAdmin(admin.ModelAdmin):
-	list_display = ('id','mail','name','last',)
+	list_display = ('id','email','name','last',)
 
 class EleccionInline(admin.TabularInline):
 	model = Eleccion
@@ -12,11 +12,11 @@ class EleccionInline(admin.TabularInline):
 class EncuestaAdmin(admin.ModelAdmin):
 	model = Encuesta
 	inlines = (EleccionInline,)
-	list_display = ('pregunta', 'cuenta_elecciones', 'cuenta_votos_totales')
+	list_display = ('titulo', 'cuenta_elecciones', 'cuenta_votos_totales')
 
 class VotoAdmin(admin.ModelAdmin):
 	model = Voto
-	list_display = ('eleccion', 'user', 'encuesta')
+	list_display = ('eleccion', 'usuario', 'encuesta')
 
 
 admin.site.register(Encuesta, EncuestaAdmin)

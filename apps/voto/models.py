@@ -37,17 +37,17 @@ class Encuesta(models.Model):
 	titulo = models.CharField(max_length=64)
 	categoria = models.CharField(max_length=64)
 	fecha_creacion = models.DateField(default=datetime.date.today)
-	publicado = models.BooleanFueld(default=True)
+	publicado = models.BooleanField(default=True)
 	propietario = models.ForeignKey(Usuario,related_name='usuarion',null=True,blank=True,)
 
 	class Meta:
 		ordering = ['-fecha_creacion']
 
 
-	def contar_votos(self):
+	def cuenta_elecciones(self):
 		return self.set_eleccion.count()
 
-	def contar_votos_totales(self):
+	def cuenta_votos_totales(self):
 		resultado = 0
 		for eleccion in self.set_eleccion.all():
 			resultado += eleccion.contar_votos()
