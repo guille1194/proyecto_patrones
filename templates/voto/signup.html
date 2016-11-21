@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<center>
+<div class="container-fluid bg-1 text-center">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-8">
+			<form id="miForm" action="."  method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<center>
+					<input name="username" type = "text" id = "id_username" class="form-control" placeholder="username"><br>
+					<input name="password1" id="id_password1" type="password" class="form-control" placeholder= "new password"><br>
+					<input name="password2" id="id_password2" type="password" class="form-control" placeholder="confirm password"><br>		
+					<input name="mail" id="id_mail" type="email" class="form-control" placeholder="email"><br>
+					<input name="name" id="id_name" type="text" class="form-control" placeholder="name"><br>
+					<input name="last" id="id_last" type="text" class="form-control" placeholder="last name"><br>
+
+					<input type="submit"   name="Register" class="btn btn-primary" value="send">
+					<input type="reset"  name="Cancel" class="btn btn-danger" value="clear"><br><br>
+				</center>
+			</form>
+		</div>
+	</div>
+</div>
+</center>
+{% endblock %}

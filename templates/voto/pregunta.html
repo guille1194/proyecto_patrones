@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="container-fluid bg-1 text-center">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-8">
+			<form method="POST">
+				{% csrf_token %}
+				<input name="nombre" type = "text" id = "id_nombre" class="form-control" placeholder="Pregunta"><br>
+				<select name="categoria" class="form-control" id="categoria">
+					  <option value="cine">cine</option>
+					  <option value="deportes">deportes</option>
+					  <option value="ciencias">ciencias</option>
+					  <option value="recuentos de la vida">recuentos de la vida</option>
+					  <option value="computacion">computacion</option>
+				</select>
+				<div class="checkbox">
+			        <label>
+			          <input name="si" type="checkbox"> Si
+			        </label>
+			     </div>
+			     <div class="checkbox">
+			        <label>
+			          <input name="no" type="checkbox"> no
+			        </label>
+		         </div><br>
+				<input name="propietario" id="id_propietario" type="text" class="form-control" placeholder= "propietario"><br>
+
+				 <input type="submit" class="btn btn-outline btn-primary" value="Registrar">
+                 <input type="reset" class="btn btn-outline btn-danger" value="Cancelar">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
