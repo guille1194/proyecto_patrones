@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.views.generic import FormView, CreateView, ListView,DetailView,UpdateView,DeleteView
-from .forms import Userform
+from .forms import Userform, EncuestaForm
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
-from .models import Usuario, Encuesta, Eleccion, Voto
+from .models import Usuario, Encuesta, Categoria, Eleccion, Voto
 from django.core.paginator import Paginator, EmptyPage, InvalidPage, PageNotAnInteger
 from django.contrib.auth.models import User
 # Create your views here.
@@ -76,6 +76,9 @@ def encuesta_lista(request):
 	}
 	return render(request, "voto/encuesta_lista.html", context)
 
+def EncuestaAdmin(request):
+	return render(request, "voto/encuestaadmin.html")
+
 class Crear_Encuesta(FormView):
 	template_name = 'voto/CrearEncuesta.html'
 	form_class = EncuestaForm
@@ -86,7 +89,7 @@ class Crear_Encuesta(FormView):
 		p.titulo = form.cleaned_data['titulo']
 		p.categoria = form.cleaned_data['categoria']
 		p.fecha_creacion = date.today()
-		p.publicado = form.
+		p.publicado = form.cleaned_data['publicado']
 		p.propietario = form.cleaned_data['propietario']
 		p.save()
 		return super(Crear_Encuesta, self).form_valid(form)
@@ -130,7 +133,7 @@ def actualizar_encuesta(request, id):
 		except:
 			print "Un error"
 	context = {
-		"object_list": "eee"
+		"object_list": "eee",
 		"encuesta": encuesta,
 		"form":form,
 		"Categoria": Categoria.objects.all()
